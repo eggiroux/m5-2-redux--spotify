@@ -12,6 +12,15 @@ import GlobalStyles from "./GlobalStyles";
 const DEFAULT_ARTIST_ID = "0U04xAocTetRnA7v3TYQ2i";
 
 const App = () => {
+  React.useEffect(() => {
+    fetch("/spotify_access_token/")
+      .then((res) => res.json())
+      .then((json) => console.log(json))
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <Router>
       <GlobalStyles />

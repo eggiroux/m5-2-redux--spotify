@@ -22,12 +22,14 @@ app.get("/spotify_access_token", async (req, res, next) => {
   // TODO: use authString in a request to Spotify!
   const response = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
-    header: {
+    headers: {
       Authorization: `Basic ${authString}`,
-      "Content-type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
     body: "grant_type=client_credentials",
   });
+
+  //console.log(response);
 
   const token = await response.json();
 
