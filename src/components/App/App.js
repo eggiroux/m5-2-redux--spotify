@@ -38,7 +38,7 @@ const App = () => {
     <Router>
       <GlobalStyles />
       <Switch>
-        <Route path={"/artists/:id"}>
+        <Route path={"/artists/:artistId"}>
           <ArtistRoute />
         </Route>
         <Route exact={true} path={"/"}>
