@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
+import { shortNumber } from "../../../helpers/utils";
+
 const Header = () => {
   const currentArtist = useSelector((state) => state.artists.currentArtist);
 
@@ -9,12 +11,14 @@ const Header = () => {
   const artistName = currentArtist.name;
   const followers = currentArtist.followers.total;
 
+  shortNumber(followers);
+
   return (
     <Wrapper>
       <Avatar src={avatarSrc} />
       <ArtistName>{artistName}</ArtistName>
       <Followers>
-        {followers} <span>followers</span>
+        {shortNumber(followers)} <span>followers</span>
       </Followers>
     </Wrapper>
   );
@@ -54,7 +58,6 @@ const Followers = styled.p`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  text-transform: lowercase;
   color: #ff4fd8;
 
   & span {

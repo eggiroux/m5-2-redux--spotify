@@ -11,12 +11,14 @@ const Tags = () => {
     <Wrapper>
       <h3>tags</h3>
       <TagList>
-        {tags.map((tag) => {
-          return (
-            <Tag key={tag}>
-              <TagText>{tag}</TagText>
-            </Tag>
-          );
+        {tags.map((tag, index) => {
+          if (index <= 1) {
+            return (
+              <Tag key={tag}>
+                <TagText>{tag}</TagText>
+              </Tag>
+            );
+          }
         })}
       </TagList>
     </Wrapper>
@@ -31,6 +33,8 @@ const Wrapper = styled.header`
 const TagList = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
 `;
 
 const Tag = styled.div`
