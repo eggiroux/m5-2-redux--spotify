@@ -11,16 +11,21 @@ export const receiveAccessTokenError = () => ({
   type: "RECEIVE_ACCESS_TOKEN_ERROR",
 });
 
-export const artistIdRequest = () => ({
-  type: "ARTIST_ID_REQUEST",
-});
-
 export const artistIdReceive = (currentArtist) => ({
   type: "ARTIST_ID_RECEIVE",
   currentArtist,
 });
 
-export const artistIdFailure = (error) => ({
-  type: "ARTIST_ID_FAILURE",
+export const artistTopTracksReceive = (topTracks) => ({
+  type: "ARTIST_TOP_TRACKS_RECEIVE",
+  topTracks,
+});
+
+export const requestAllArtistInfo = () => ({
+  type: "ARTIST_ALL_INFO_REQUEST",
+});
+
+export const receiveAllArtistInfoFailure = (error) => ({
+  type: "ARTIST_ALL_INFO_FAILURE",
   error,
 });

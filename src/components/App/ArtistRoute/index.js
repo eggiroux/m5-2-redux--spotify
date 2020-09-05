@@ -5,20 +5,25 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Header from "./Header";
 import Tags from "./Tags";
+import TopTracks from "./TopTracks";
 
 import {
-  artistIdRequest,
   artistIdReceive,
-  artistIdFailure,
+  artistTopTracksReceive,
+  requestAllArtistInfo,
+  receiveAllArtistInfoFailure,
 } from "../../../actions";
 
-import { fetchArtistProfile } from "../../../helpers/api-helpers";
+import {
+  fetchArtistProfile,
+  fetchArtistTopTracks,
+} from "../../../helpers/api-helpers";
 
 const ArtistRoute = () => {
   const dispatch = useDispatch();
 
   const accessToken = useSelector((state) => state.auth.token);
-  const { currentArtist } = useSelector((state) => state.artists);
+  const { currentArtist, topTracks } = useSelector((state) => state.artists);
 
   const { artistId } = useParams();
 
@@ -26,16 +31,24 @@ const ArtistRoute = () => {
     if (!accessToken) {
       return;
     }
-    dispatch(artistIdRequest());
 
-    fetchArtistProfile(accessToken, artistId)
-      .then((artist) => dispatch(artistIdReceive(artist)))
+    dispatch(requestAllArtistInfo());
+
+    const fetchArtist = fetchArtistProfile(accessToken, artistId);
+    const fetchTopTracks = fetchArtistTopTracks(accessToken, artistId);
+
+    Promise.all([fetchArtist, fetchTopTracks])
+      .then(([artist, topTracks]) => {
+        dispatch(artistIdReceive(artist));
+        dispatch(artistTopTracksReceive(topTracks));
+        //console.log(artist, topTracks);
+      })
       .catch((error) => {
-        dispatch(artistIdFailure(error));
+        dispatch(receiveAllArtistInfoFailure(error));
       });
   }, [accessToken]);
 
-  if (!currentArtist) {
+  if (!currentArtist || !topTracks) {
     return <div>Loading...</div>;
   }
 
@@ -43,6 +56,7 @@ const ArtistRoute = () => {
     <Wrapper>
       <Header />
       <Tags />
+      <TopTracks topTracks={topTracks} />
     </Wrapper>
   );
 };
