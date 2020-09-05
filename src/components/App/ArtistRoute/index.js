@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Header from "./Header";
 import Tags from "./Tags";
 import TopTracks from "./TopTracks";
+import FullScreenSpinner from "../FullScreenSpinner";
 
 import {
-  artistIdReceive,
-  artistTopTracksReceive,
+  artistAllInfoReceive,
   requestAllArtistInfo,
   receiveAllArtistInfoFailure,
 } from "../../../actions";
@@ -23,7 +23,7 @@ const ArtistRoute = () => {
   const dispatch = useDispatch();
 
   const accessToken = useSelector((state) => state.auth.token);
-  const { currentArtist, topTracks } = useSelector((state) => state.artists);
+  const { status } = useSelector((state) => state.artists);
 
   const { artistId } = useParams();
 
@@ -39,24 +39,24 @@ const ArtistRoute = () => {
 
     Promise.all([fetchArtist, fetchTopTracks])
       .then(([artist, topTracks]) => {
-        dispatch(artistIdReceive(artist));
-        dispatch(artistTopTracksReceive(topTracks));
+        dispatch(artistAllInfoReceive(artist, topTracks));
+
         //console.log(artist, topTracks);
       })
       .catch((error) => {
         dispatch(receiveAllArtistInfoFailure(error));
       });
   }, [accessToken]);
-
-  if (!currentArtist || !topTracks) {
-    return <div>Loading...</div>;
+  console.log(status);
+  if (status === "loading") {
+    return <FullScreenSpinner />;
   }
 
   return (
     <Wrapper>
       <Header />
       <Tags />
-      <TopTracks topTracks={topTracks} />
+      <TopTracks />
     </Wrapper>
   );
 };

@@ -3,7 +3,7 @@ import { produce } from "immer";
 const initialState = {
   currentArtist: null,
   topTracks: null,
-  status: "idle",
+  status: "loading",
   error: null,
 };
 
@@ -14,16 +14,10 @@ export default function artistsReducer(state = initialState, action) {
         draftState.status = "loading";
       });
     }
-    case "ARTIST_ID_RECEIVE": {
+    case "ARTIST_ALL_INFO_RECEIVE": {
       return produce(state, (draftState) => {
         draftState.status = "idle";
         draftState.currentArtist = action.currentArtist;
-      });
-    }
-    case "ARTIST_TOP_TRACKS_RECEIVE": {
-      //console.log(action.topTracks);
-      return produce(state, (draftState) => {
-        draftState.status = "idle";
         draftState.topTracks = action.topTracks.tracks;
       });
     }

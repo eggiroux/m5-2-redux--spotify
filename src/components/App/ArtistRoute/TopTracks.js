@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import PlayButton from "react-play-button";
 
-const TopTracks = ({ topTracks }) => {
+const TopTracks = () => {
+  const { topTracks } = useSelector((state) => state.artists);
+
   const [currentlyPlaying, setCurrentlyPlaying] = React.useState(null);
 
-  const stopTrack = () => {
-    setCurrentlyPlaying(null);
-  };
   console.log("currentlyPlaying", currentlyPlaying);
   return (
     <Wrapper>
@@ -23,7 +24,7 @@ const TopTracks = ({ topTracks }) => {
                   playIconColor="white"
                   stopIconColor="white"
                   idleBackgroundColor={"rgba(75, 75, 75, 0.4)"}
-                  progressCircleColor={"#3354FF"}
+                  progressCircleColor={"#ff4fd8"}
                   progressCiricleWidth={"4"}
                   play={() => {
                     setCurrentlyPlaying(index);
