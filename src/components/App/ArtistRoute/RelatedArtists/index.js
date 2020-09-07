@@ -28,22 +28,21 @@ const RelatedArtists = () => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   text-align: center;
   margin-top: 50px;
 `;
 
 const ArtistList = styled.ul`
   display: flex;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
   overflow: scroll;
-  padding-left: 50px;
-  margin-left: 20px;
+  margin: 0;
   scroll-snap-type: x mandatory;
 
   & li {
-    margin: 0 15px;
+    padding: 15px;
     list-style-type: none;
     scroll-snap-align: start;
   }

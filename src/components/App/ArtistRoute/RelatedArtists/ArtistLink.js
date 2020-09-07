@@ -13,6 +13,7 @@ const ArtistLink = ({ avatarSrc, name, artistId }) => {
 
 const Wrapper = styled(Link)`
   text-decoration: none;
+  padding: 0;
 `;
 
 const Avatar = styled.img`

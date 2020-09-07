@@ -67,7 +67,7 @@ const ArtistRoute = () => {
 
 const Wrapper = styled.div`
   padding-top: 40px;
-  background-color: black;
+  background-color: #0b0f14;
   height: 100vh;
 `;
 

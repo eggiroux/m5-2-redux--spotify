@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: black;
+  background-color: #0b0f14;
 `;
 
 export default FullScreenSpinner;

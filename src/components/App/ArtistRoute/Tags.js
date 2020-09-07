@@ -25,7 +25,7 @@ const Tags = () => {
   );
 };
 
-const Wrapper = styled.header`
+const Wrapper = styled.section`
   position: relative;
   text-align: center;
 `;
@@ -38,10 +38,25 @@ const TagList = styled.ul`
 `;
 
 const Tag = styled.div`
+  position: relative;
   background-color: rgba(75, 75, 75, 0.4);
   border-radius: 4px;
-  padding: 8px 20px;
-  margin: 0 5px 5px;
+  padding: 8px 20px 11px;
+  margin: 0 5px 10px;
+  overflow: hidden;
+
+  & :before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border: 6px rgba(75, 75, 75, 0.4) solid;
+    border-top-color: #0b0f14;
+    border-left-color: #0b0f14;
+    border-radius: 3px;
+    box-shadow: 4px -4px 5px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+  }
 `;
 
 const TagText = styled.span`

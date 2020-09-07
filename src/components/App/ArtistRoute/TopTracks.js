@@ -42,7 +42,7 @@ const TopTracks = () => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   text-align: center;
   margin-top: 50px;
 `;
