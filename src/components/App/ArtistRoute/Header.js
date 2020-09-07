@@ -42,6 +42,7 @@ const ArtistName = styled.h2`
   position: relative;
   top: -50px;
   margin: 0;
+  text-align: center;
 
   font-size: 48px;
   line-height: 59px;

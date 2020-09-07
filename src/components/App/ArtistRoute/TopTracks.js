@@ -9,7 +9,7 @@ const TopTracks = () => {
 
   const [currentlyPlaying, setCurrentlyPlaying] = React.useState(null);
 
-  console.log("currentlyPlaying", currentlyPlaying);
+  // console.log("currentlyPlaying", currentlyPlaying);
   return (
     <Wrapper>
       <h3>top tracks</h3>

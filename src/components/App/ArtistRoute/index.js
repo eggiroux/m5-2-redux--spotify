@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Header from "./Header";
 import Tags from "./Tags";
 import TopTracks from "./TopTracks";
+import RelatedArtists from "./RelatedArtists/";
 import FullScreenSpinner from "../FullScreenSpinner";
 
 import {
@@ -17,6 +18,7 @@ import {
 import {
   fetchArtistProfile,
   fetchArtistTopTracks,
+  fetchArtistRelatedArtists,
 } from "../../../helpers/api-helpers";
 
 const ArtistRoute = () => {
@@ -31,23 +33,24 @@ const ArtistRoute = () => {
     if (!accessToken) {
       return;
     }
-
     dispatch(requestAllArtistInfo());
 
     const fetchArtist = fetchArtistProfile(accessToken, artistId);
     const fetchTopTracks = fetchArtistTopTracks(accessToken, artistId);
+    const fetchRelatedArtists = fetchArtistRelatedArtists(
+      accessToken,
+      artistId
+    );
 
-    Promise.all([fetchArtist, fetchTopTracks])
-      .then(([artist, topTracks]) => {
-        dispatch(artistAllInfoReceive(artist, topTracks));
-
-        //console.log(artist, topTracks);
+    Promise.all([fetchArtist, fetchTopTracks, fetchRelatedArtists])
+      .then(([artist, topTracks, relatedArtists]) => {
+        dispatch(artistAllInfoReceive(artist, topTracks, relatedArtists));
       })
       .catch((error) => {
         dispatch(receiveAllArtistInfoFailure(error));
       });
   }, [accessToken]);
-  console.log(status);
+  //  console.log(status);
   if (status === "loading") {
     return <FullScreenSpinner />;
   }
@@ -57,6 +60,7 @@ const ArtistRoute = () => {
       <Header />
       <Tags />
       <TopTracks />
+      <RelatedArtists />
     </Wrapper>
   );
 };

@@ -11,10 +11,15 @@ export const receiveAccessTokenError = () => ({
   type: "RECEIVE_ACCESS_TOKEN_ERROR",
 });
 
-export const artistAllInfoReceive = (currentArtist, topTracks) => ({
+export const artistAllInfoReceive = (
+  currentArtist,
+  topTracks,
+  relatedArtists
+) => ({
   type: "ARTIST_ALL_INFO_RECEIVE",
   currentArtist,
   topTracks,
+  relatedArtists,
 });
 
 export const requestAllArtistInfo = () => ({
