@@ -35,7 +35,7 @@ const Wrapper = styled.section`
 
 const ArtistList = styled.ul`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: start;
   overflow: scroll;
   margin: 0;
