@@ -35,7 +35,7 @@ const App = () => {
   }, []);
 
   return (
-    <Router forceRefresh={true}>
+    <Router>
       <GlobalStyles />
       <Switch>
         <Route path={"/artists/:artistId"}>

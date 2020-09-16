@@ -49,7 +49,7 @@ const ArtistRoute = () => {
       .catch((error) => {
         dispatch(receiveAllArtistInfoFailure(error));
       });
-  }, [accessToken]);
+  }, [accessToken, artistId]);
   //  console.log(status);
   if (status === "loading") {
     return <FullScreenSpinner />;
